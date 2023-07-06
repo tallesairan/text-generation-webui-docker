@@ -40,6 +40,8 @@ if [ $? -ne 0 ]; then
 else
   # The command executed successfully
   COMMITS_BEHIND=$(git rev-list HEAD..origin --count)
+  # pull contents of remote repo
+  git pull >/dev/null 2>&1
 fi
 echo "=== (This version is $COMMITS_BEHIND commits behind origin) ===" 
 cd $cur_dir
