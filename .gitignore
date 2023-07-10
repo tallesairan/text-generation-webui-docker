@@ -1,3 +1,7 @@
 _non
 config/models
 text-generation-webui/
+config/prompts/Alpaca-Instruct_PN.txt
+config/training/datasets
+config/loras
+__pycache__

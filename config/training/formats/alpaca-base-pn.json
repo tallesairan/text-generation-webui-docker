@@ -1,0 +1,4 @@
+{
+    "instruction,output": "%instruction% %output%",
+    "instruction,input,output": "%instruction% %input% %output%"
+}
