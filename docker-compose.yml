@@ -1,10 +1,10 @@
 version: "3"
 services:
   text-generation-webui-docker:
-    image: atinoda/text-generation-webui:default # Specify variant as the :tag
+    image: atinoda/text-generation-webui:default-nightly # Specify variant as the :tag
     container_name: text-generation-webui
     environment:
-      - EXTRA_LAUNCH_ARGS="--listen --verbose --api --share" # Custom launch args (e.g., --model MODEL_NAME)
+      - EXTRA_LAUNCH_ARGS="--listen --verbose --api --share --public-api" # Custom launch args (e.g., --model MODEL_NAME)
 #      - BUILD_EXTENSIONS_LIVE="silero_tts whisper_stt" # Install named extensions during every container launch. THIS WILL SIGNIFICANLTLY SLOW LAUNCH TIME.
     ports:
       - 7860:7860  # Default web port
