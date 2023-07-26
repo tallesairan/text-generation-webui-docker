@@ -1,16 +1,21 @@
 version: "3"
 services:
   text-generation-webui-docker:
-    image: atinoda/text-generation-webui:monkey-patch # Specify variant as the :tag
-    container_name: text-generation-webui
+    image: atinoda/text-generation-webui:default-nightly
+#    build:
+#      context: .
+#      target: default  # Specify the variant to build
+#      args:
+#        - LCL_SRC_DIR=text-generation-webui  # Developers - see Dockerfile app_base
+    container_name: text-generation-webui-dev
     environment:
-      - EXTRA_LAUNCH_ARGS="--listen --verbose --api --public-api --share --monkey-patch" # Custom launch args (e.g., --model MODEL_NAME)
+      - EXTRA_LAUNCH_ARGS="--verbose --api --public-api --share --notebook  -extensions api" # Custom launch args (e.g., --model MODEL_NAME)
       - BUILD_EXTENSIONS_LIVE="silero_tts whisper_stt" # Install named extensions during every container launch. THIS WILL SIGNIFICANLTLY SLOW LAUNCH TIME.
     ports:
       - 7860:7860  # Default web port
       - 5000:5000  # Default API port
-#      - 5005:5005  # Default streaming port
-#      - 5001:5001  # Default OpenAI API extension port
+      - 5005:5005  # Default streaming port
+      - 5001:5001  # Default OpenAI API extension port
     volumes:
       - ./config/loras:/app/loras
       - ./config/models:/app/models
@@ -18,7 +23,7 @@ services:
       - ./config/prompts:/app/prompts
       - ./config/softprompts:/app/softprompts
       - ./config/training:/app/training
-      - ./config/extensions:/app/extensions
+#      - ./config/extensions:/app/extensions
     logging:
       driver:  json-file
       options:
