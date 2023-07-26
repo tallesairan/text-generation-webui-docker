@@ -4,13 +4,13 @@ services:
     image: atinoda/text-generation-webui:default-nightly # Specify variant as the :tag
     container_name: text-generation-webui
     environment:
-      - EXTRA_LAUNCH_ARGS="--listen --verbose --api --share --public-api" # Custom launch args (e.g., --model MODEL_NAME)
+      - EXTRA_LAUNCH_ARGS="--listen --verbose --api --share --public-api --notebook --settings /app/settings.yaml" # Custom launch args (e.g., --model MODEL_NAME)
 #      - BUILD_EXTENSIONS_LIVE="silero_tts whisper_stt" # Install named extensions during every container launch. THIS WILL SIGNIFICANLTLY SLOW LAUNCH TIME.
     ports:
       - 7860:7860  # Default web port
       - 5000:5000  # Default API port
       - 5005:5005  # Default streaming port
-      - 5001:5001  # Default OpenAI API extension port
+#      - 5001:5001  # Default OpenAI API extension port
     volumes:
       - ./config/characters:/app/characters
       - ./config/loras:/app/loras
@@ -18,6 +18,7 @@ services:
       - ./config/presets:/app/presets
       - ./config/prompts:/app/prompts
       - ./config/training:/app/training
+      - ./settings.yaml:/app/settings.yaml
 #      - ./config/extensions:/app/extensions  # Persist all extensions
 #      - ./config/extensions/silero_tts:/app/extensions/silero_tts  # Persist a single extension
     logging:
