@@ -69,7 +69,6 @@ def build_parameters(body, chat=False):
 
     return generate_params
 
-
 def try_start_cloudflared(port: int, max_attempts: int = 3, on_start: Optional[Callable[[str], None]] = None):
     Thread(target=_start_cloudflared, args=[
            port, max_attempts, on_start], daemon=True).start()
